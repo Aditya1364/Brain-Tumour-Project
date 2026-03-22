@@ -1,0 +1,90 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Default dark theme variables (overridden by ThemeContext) ─────── */
+:root {
+  --bg:           #080B1A;
+  --bg-card:      #0D1128;
+  --bg-card2:     #111835;
+  --bg-input:     #080B1A;
+  --border:       rgba(0,212,255,0.15);
+  --border-hover: rgba(0,212,255,0.35);
+  --text:         #E8EEFF;
+  --text-muted:   #6B7DB3;
+  --text-faint:   #3D4F7A;
+  --primary:      #00D4FF;
+  --secondary:    #7B2FFF;
+  --success:      #00FF94;
+  --warning:      #FFB800;
+  --danger:       #FF4757;
+  --shadow:       0 4px 24px rgba(0,0,0,0.5);
+  --shadow-card:  0 0 40px rgba(123,47,255,0.12);
+  --grid-line:    rgba(0,212,255,0.05);
+
+  /* Font scale */
+  --fs-xs:   12px;
+  --fs-sm:   13px;
+  --fs-base: 15px;
+  --fs-md:   16px;
+  --fs-lg:   18px;
+  --fs-xl:   22px;
+  --fs-2xl:  26px;
+}
+
+html { font-size: 16px; }
+
+body {
+  background:              var(--bg);
+  color:                   var(--text);
+  font-family:             'Space Grotesk', sans-serif;
+  font-size:               var(--fs-base);
+  line-height:             1.6;
+  -webkit-font-smoothing:  antialiased;
+  transition:              background 0.3s ease, color 0.3s ease;
+}
+
+html, body, #root { height: 100%; }
+
+/* ── Light mode body overrides ──────────────────────────────────────── */
+[data-theme="light"] body {
+  background: var(--bg);
+  color:      var(--text);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+
+/* ── Form elements ──────────────────────────────────────────────────── */
+input, select, textarea, button { font-family: inherit; font-size: inherit; }
+input[type="range"] { accent-color: var(--primary); cursor: pointer; }
+
+/* ── Utility ────────────────────────────────────────────────────────── */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.theme-transition { transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+
+/* ── Animations ─────────────────────────────────────────────────────── */
+@keyframes fadeIn   { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse    { 0%,100%{opacity:1} 50%{opacity:.4} }
+@keyframes spin     { to{transform:rotate(360deg)} }
+@keyframes scan     { 0%{top:0%} 100%{top:100%} }
+@keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+@keyframes glow     { 0%,100%{box-shadow:0 0 8px rgba(0,212,255,0.3)} 50%{box-shadow:0 0 24px rgba(0,212,255,0.6)} }
+
+.fade-in    { animation: fadeIn 0.35s ease forwards; }
+.float      { animation: float 3s ease-in-out infinite; }
+.pulse-dot  { animation: pulse 1.5s ease-in-out infinite; }
+.glow-border{ animation: glow 2s ease-in-out infinite; }
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hide-mobile  { display: none !important; }
+  .grid-2-mobile{ grid-template-columns: 1fr !important; }
+  .grid-4-mobile{ grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 480px) {
+  .hide-phone   { display: none !important; }
+  .grid-4-phone { grid-template-columns: 1fr 1fr !important; }
+  .grid-2-phone { grid-template-columns: 1fr !important; }
+}
